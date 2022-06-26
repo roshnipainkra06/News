@@ -72,7 +72,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let articles = self.totalItemList[indexPath.row]
-
     }
     
     @objc func refresh(_ sender: AnyObject) {
