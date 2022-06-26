@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var articlesViewModel: ArticlesViewModel!
+    let refreshControl = UIRefreshControl()
     private var totalItemList: [Articles]!
     
     override func viewDidLoad() {
@@ -55,6 +56,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableCell", for: indexPath) as! TableViewCell
         
         let articles = self.totalItemList[indexPath.row]
+        cell.newsTitle.text = "Title: " + articles.title!
+        cell.newsAuthor.text = "Author: " + articles.author!
+        cell.newsDescription.text = articles.description
+        
+        if let imgData =  try? Data(contentsOf: URL(string: articles.urlToImage ?? "")!) {
+            cell.newsImage.image = UIImage(data: imgData)
+        }
         
         return cell
     }
