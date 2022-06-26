@@ -26,5 +26,14 @@ class ArticlesViewModel: NSObject {
     
     //Fetch list of Items from The API
     func callGetArticles() {
+        self.apiService.getFullArticleList { (result) in
+            switch result {
+            case .success(let articles):
+                self.articles = articles
+                break
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
