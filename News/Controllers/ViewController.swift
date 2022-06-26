@@ -72,6 +72,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let articles = self.totalItemList[indexPath.row]
+        
+        let detailView = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailView.url = articles.url
+        self.navigationController?.pushViewController(detailView, animated: true)
     }
     
     @objc func refresh(_ sender: AnyObject) {
